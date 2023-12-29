@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "galleries",
+  "info": {
+    "singularName": "gallery",
+    "pluralName": "galleries",
+    "displayName": "Gallery",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "artist": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
