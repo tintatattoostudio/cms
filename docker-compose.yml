@@ -1,0 +1,72 @@
+version: '3'
+services:
+  tintacms:
+    container_name: tintacms
+    build: .
+    image: tintacms:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: tintacmsDB
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PORT: ${DATABASE_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./yarn.lock:/opt/yarn.lock
+
+      - ./.env:/opt/app/.env
+      - ./public/uploads:/opt/app/public/uploads
+    ports:
+      - '1337:1337'
+    networks:
+      - tintacms
+    depends_on:
+      - tintacmsDB
+      
+  tintacmsDB:
+    container_name: tintacmsDB
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    env_file: .env
+    image: postgres:14.5-alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - tintacms-data:/var/lib/postgresql/data/ #using a volume
+      #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
+
+    ports:
+      - '5439:5439'
+    networks:
+      - tintacms
+      
+  tintacmsAdminer:
+    container_name: tintacmsAdminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - '9090:8080'
+    environment:
+      - ADMINER_DEFAULT_SERVER=tintacmsDB
+    networks:
+      - tintacms
+    depends_on:
+      - tintacmsDB
+
+volumes:
+  tintacms-data:
+
+networks:
+  tintacms:
+    name: Tintacms
+    driver: bridge
