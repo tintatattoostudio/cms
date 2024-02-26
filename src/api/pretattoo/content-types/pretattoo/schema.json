@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "pretattoos",
+  "info": {
+    "singularName": "pretattoo",
+    "pluralName": "pretattoos",
+    "displayName": "Pretattoo"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "content": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "segments": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "website.segment"
+      ]
+    }
+  }
+}
