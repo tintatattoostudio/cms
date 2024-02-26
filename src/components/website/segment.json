@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_website_segments",
+  "info": {
+    "displayName": "segment"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "cares",
+  "info": {
+    "singularName": "care",
+    "pluralName": "cares",
+    "displayName": "Care"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "sections": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "website.segment"
+      ]
+    }
+  }
+}

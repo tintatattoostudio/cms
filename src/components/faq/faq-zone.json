@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_faq_faq_zones",
+  "info": {
+    "displayName": "zone",
+    "icon": "question",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text"
+    },
+    "qa": {
+      "type": "component",
+      "repeatable": true,
+      "component": "faq.qa"
+    }
+  }
+}
